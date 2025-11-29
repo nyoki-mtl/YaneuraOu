@@ -1,0 +1,62 @@
+[project]
+name = "yaneuraou"
+version = "0.1.0"
+description = "YaneuraOu"
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "cshogi"
+]
+
+[tool.uv.sources]
+cshogi = { git = "https://github.com/nyoki-mtl/cshogi", rev = "numpy2-support" }
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.4",
+    "ruff>=0.9.9",
+    "mypy>=1.15.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = ["_refs", "work_dir", "node_modules", ".venv", ".git"]
+addopts = ["-ra", "-q"]
+
+[tool.ruff]
+line-length = 120
+exclude = ["_refs"]
+src = ["scripts"]
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+
+# Per-file rules
+[tool.ruff.lint.per-file-ignores]
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 120
+
+[tool.mypy]
+# Pythonのバージョンを指定
+python_version = "3.10"
+
+# 型情報が不足しているライブラリに対する警告を抑制 (types-* スタブがない場合)
+ignore_missing_imports = true
+
+# _refsディレクトリを除外
+# Exclude generated/vendor and legacy tuning modules from strict CI pass
+exclude = "(_refs)"
+
+disallow_any_generics = false
+disallow_untyped_defs = false

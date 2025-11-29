@@ -19,6 +19,7 @@ YaneuraOu_backup*.lnk
 ~*
 .*/
 !.github/
+!.devcontainer/
 *.nnue
 *.nnue.*
 *.result.txt
@@ -53,6 +54,7 @@ YaneuraOu.VC.VC.opendb
 x64/
 x86/
 build/
+build_outputs/
 bld/
 [Bb]in/
 [Oo]bj/
